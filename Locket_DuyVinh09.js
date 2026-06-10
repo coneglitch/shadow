@@ -3,9 +3,22 @@ const mapping = {
     'Locket': ['Gold']
 };
 const ua = $request.headers["User-Agent"] ?? $request.headers["user-agent"];
-const obj = JSON.parse($response.body);
+let obj;
+try {
+    obj = JSON.parse($response.body);
+} catch (e) {
+    $done({});
+}
+
+if (!obj || !obj.subscriber) {
+    $done({});
+}
 
 obj.Attention = "ChA c m ng b n! Vui lA ng khA'ng bA n ho c chia s  cho ng  i khA c!";
+
+const now = new Date();
+const nextYear = new Date(now.setFullYear(now.getFullYear() + 1)).toISOString();
+const currentStr = new Date().toISOString();
 
 const duyvinh09 = {
     auto_resume_date: null,
@@ -16,21 +29,21 @@ const duyvinh09 = {
     management_url: "https://apps.apple.com/account/subscriptions",
     period_type: "normal",
     price: { amount: 399000.0, currency: "VND" },
-    expires_date: "9999-01-09T10:10:14Z",
+    expires_date: nextYear,
     grace_period_expires_date: null,
     refunded_at: null,
     unsubscribe_detected_at: null,
-    original_purchase_date: "2005-01-09T10:10:15Z",
-    purchase_date: "2005-01-09T10:10:14Z",
+    original_purchase_date: currentStr,
+    purchase_date: currentStr,
     store: "app_store",
-    store_transaction_id: "2000001108724193"
+    store_transaction_id: "20000" + Math.floor(Math.random() * 90000000000 + 10000000000)
 };
 
 const locketGold = {
     grace_period_expires_date: null,
-    purchase_date: "2005-01-09T10:10:14Z",
+    purchase_date: currentStr,
     product_identifier: "locket_1600_1y",
-    expires_date: "9999-01-09T10:10:14Z"
+    expires_date: nextYear
 };
 
 const match = Object.keys(mapping).find(e => ua?.includes(e));
