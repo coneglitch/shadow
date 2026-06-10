@@ -9,17 +9,22 @@ if (resStatus !== 200) {
     let body;
 
     const processMapObj = (accountAttributesMapObj) => {
-        const expireDate = new Date();
-        expireDate.setMonth(expireDate.getMonth() + 1);
-        const endDateStr = expireDate.toISOString().split('.')[0] + "Z";
+        if (!accountAttributesMapObj) return;
 
+        // accountAttributesMapObj['is-eligible-premium-unboxing'] = {boolValue : true};
+        // accountAttributesMapObj['feature-set-id-masked'] = {stringValue : 'dd6ef0c22c'};
+        accountAttributesMapObj['smart-shuffle'] = {stringValue : 'AVAILABLE'};
+        accountAttributesMapObj['is-euterpe'] = {boolValue : true};
+        accountAttributesMapObj['has-audiobooks-subscription'] = {boolValue : true};
+        accountAttributesMapObj['type'] = {stringValue : 'premium'};
+        accountAttributesMapObj['payments-initial-campaign'] = {stringValue : 'prepaid'};
+
+        const expireDate = new Date();
+        expireDate.setFullYear(expireDate.getFullYear() + 1);
+        const endDateStr = expireDate.toISOString().split('.')[0] + "Z";
+        accountAttributesMapObj['subscription-enddate'] = {stringValue : endDateStr};
+        
         Object.assign(accountAttributesMapObj, {
-            'smart-shuffle': { stringValue: 'AVAILABLE' },
-            'is-euterpe': { boolValue: true },
-            'has-audiobooks-subscription': { boolValue: true },
-            'type': { stringValue: 'premium' },
-            'payments-initial-campaign': { stringValue: 'prepaid' },
-            'subscription-enddate': { stringValue: endDateStr },
             'social-session-free-tier': { boolValue: false },
             'can_use_superbird': { boolValue: true },
             'jam-social-session': { stringValue: 'EXPANDED' },
