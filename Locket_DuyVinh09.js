@@ -7,11 +7,11 @@ let obj;
 try {
     obj = JSON.parse($response.body);
 } catch (e) {
-    $done({});
+    return $done({});
 }
 
 if (!obj || !obj.subscriber) {
-    $done({});
+    return $done({});
 }
 
 obj.Attention = "ChA c m ng b n! Vui lA ng khA'ng bA n ho c chia s  cho ng  i khA c!";
