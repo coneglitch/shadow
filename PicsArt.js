@@ -1,16 +1,11 @@
-const fakeOrderId = "20000" + Math.floor(Math.random() * 90000000000 + 10000000000);
-const now = new Date();
-const currentTs = now.getTime();
-const expireTs = currentTs + (5 * 365 * 24 * 60 * 60 * 1000); // 5 years from now
-
 const objc = {
     status: "success",
     response: [{
         status: "SUBSCRIPTION_RENEWED",
         is_trial: false,
-        order_id: fakeOrderId,
-        expire_date: expireTs,
-        purchase_date: currentTs,
+        order_id: "2000001108782321",
+        expire_date: 32662137600000,
+        purchase_date: 1704758400000,
         subscription_id: "com.picsart.studio.subscription_pro_3_yearly",
         original_order_id: "2000000756285050",
         plan_meta: {
